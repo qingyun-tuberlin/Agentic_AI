@@ -2,7 +2,7 @@
 
 A fork of Google's [MLE-STAR ADK sample](https://github.com/google/adk-samples/tree/main/python/agents/machine-learning-engineering/machine_learning_engineering).
 
-See also: [CONTRIBUTIONS.md](CONTRIBUTIONS.md) (who wrote what), [EXPERIMENTS.md](EXPERIMENTS.md) (how to run the experiments), [EXPERIMENTAL_RESULTS.md](EXPERIMENTAL_RESULTS.md) (results and discussion).
+See also: [EXPERIMENTS.md](EXPERIMENTS.md) (how to run the experiments), [EXPERIMENTAL_RESULTS.md](EXPERIMENTAL_RESULTS.md) (results and discussion).
 
 ---
 
