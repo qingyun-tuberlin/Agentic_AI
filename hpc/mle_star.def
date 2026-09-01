@@ -1,0 +1,44 @@
+Bootstrap: docker
+From: python:3.12-slim
+
+# Singularity definition for the MLE-STAR HPC runs.
+# Bundles Python 3.12, uv, and the project deps (from uv.lock — CPU torch pinned
+# via [tool.uv.sources]). Workers call GWDG directly via the agent's client-side
+# litellm (already in the lock); no proxy server is needed.
+#
+# Build (from the repo root, so the %files paths resolve):
+#   singularity build hpc/mle_star.sif hpc/mle_star.def
+#
+# The repo is NOT baked in — it is bind-mounted at run time and executed from
+# cwd, so code/prompt edits take effect without a rebuild (deps still need one).
+
+%files
+    pyproject.toml /opt/mle-star/pyproject.toml
+    uv.lock        /opt/mle-star/uv.lock
+    README.md      /opt/mle-star/README.md
+
+%post
+    set -eux
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+    apt-get install -y --no-install-recommends \
+        curl ca-certificates git build-essential
+    rm -rf /var/lib/apt/lists/*
+
+    # Install uv into a system location on PATH.
+    export UV_INSTALL_DIR=/usr/local/bin
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Deps only, from the frozen lock, into a fixed venv. --no-install-project
+    # skips the mle-star package itself (it is bind-mounted + run from cwd).
+    cd /opt/mle-star
+    UV_PROJECT_ENVIRONMENT=/opt/venv uv sync --no-dev --frozen --no-install-project
+
+%environment
+    export VIRTUAL_ENV=/opt/venv
+    export PATH=/opt/venv/bin:$PATH
+    export PYTHONUNBUFFERED=1
+    export HF_HUB_DISABLE_TELEMETRY=1
+
+%runscript
+    exec "$@"

@@ -1,0 +1,95 @@
+datasets:
+  california-housing-prices:
+    type: dataset
+    kaggle_id: camnugent/california-housing-prices
+    description: California Housing Prices regression task
+    task_name: california-housing-prices
+    task_type: Tabular Regression
+    target: median_house_value
+    lower: true
+
+  credit-card-fraud:
+    type: dataset
+    kaggle_id: mlg-ulb/creditcardfraud
+    description: Credit card fraud detection (284,807 transactions, 30 PCA-anonymized features, extreme class imbalance ~0.17% fraud)
+    task_name: credit-card-fraud
+    task_type: Tabular Classification
+    target: Class
+    lower: false
+
+  wine-quality-red:
+    type: dataset
+    kaggle_id: uciml/red-wine-quality-cortez-et-al-2009
+    description: Portuguese wine quality prediction (1599 samples, 11 features, regression/classification)
+    task_name: wine-quality-red
+    task_type: Tabular Regression
+    target: quality
+    lower: true
+
+  adult-income:
+    type: dataset
+    kaggle_id: uciml/adult-census-income
+    description: US Census income classification (32K+ samples, 14 features, binary classification)
+    task_name: adult-income
+    task_type: Tabular Classification
+    target: income
+    lower: false
+
+  pima-diabetes:
+    type: dataset
+    kaggle_id: uciml/pima-indians-diabetes-database
+    description: Pima Indian diabetes prediction (768 samples, 8 medical features, binary classification)
+    task_name: pima-diabetes
+    task_type: Tabular Classification
+    target: Outcome
+    lower: false
+
+  medical-insurance:
+    type: dataset
+    kaggle_id: mirichoi0218/insurance
+    description: Medical insurance cost regression (1338 samples, 7 features, regression)
+    task_name: medical-insurance
+    task_type: Tabular Regression
+    target: charges
+    lower: true
+
+  employee-attrition:
+    type: dataset
+    kaggle_id: pavansubhasht/ibm-hr-analytics-attrition-dataset
+    description: IBM HR Analytics employee attrition prediction (1470 samples, 35 features, binary classification)
+    task_name: employee-attrition
+    task_type: Tabular Classification
+    target: Attrition
+    lower: false
+
+competitions:
+  tabular-playground-series-may-2022:
+    type: competition
+    kaggle_id: tabular-playground-series-may-2022
+    description: Tabular Playground Series - May 2022
+    task_name: tabular-playground-series-may-2022
+    task_type: Tabular Classification
+    target: target
+    lower: false
+
+  # this is a multi-target regression, this is our most complex task
+  # if its too complex we can swap it for something else
+  nomad2018-predict-transparent-conductors:
+    type: competition
+    kaggle_id: nomad2018-predict-transparent-conductors
+    description: NOMAD 2018 - Predict formation energy and bandgap energy of transparent semiconductors (multi-target regression, RMSLE metric)
+    task_name: nomad2018-predict-transparent-conductors
+    task_type: Tabular Regression
+    target:
+      - formation_energy_ev_natom
+      - bandgap_energy_ev
+    lower: true
+
+  titanic:
+    type: competition
+    kaggle_id: titanic
+    description: Titanic - Machine Learning from Disaster
+    task_name: titanic
+    task_type: Tabular Classification
+    target: Survived
+    lower: false
